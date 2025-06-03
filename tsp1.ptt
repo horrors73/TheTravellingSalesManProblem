@@ -1,0 +1,49 @@
+import itertools
+import webbrowser
+
+# define cities
+cities = ["Nairobi, Kenya", "Nyeri, Kenya", "Nakuru, Kenya", "Meru, Kenya", "Nandi, Kenya", "Kericho, Kenya"]
+
+# distance matrix (in km)
+distance_matrix = [
+    [0,   150, 160, 225, 310, 270],
+    [150, 0,   220, 80,  400, 350],
+    [160, 220, 0,   260, 160, 100],
+    [225, 80,  260, 0,   480, 400],
+    [310, 400, 160, 480, 0,   110],
+    [270, 350, 100, 400, 110, 0]
+]
+
+def calculate_route_distance(route, matrix):
+    distance = 0
+    for i in range(len(route) - 1):
+        distance += matrix[route[i]][route[i + 1]]
+    distance += matrix[route[-1]][route[0]]  # Return to start
+    return distance
+
+# TSP brute force
+city_indices = list(range(len(cities)))
+start_city = 0
+city_indices.remove(start_city)
+
+min_distance = float('inf')
+best_route = None
+
+for perm in itertools.permutations(city_indices):
+    route = [start_city] + list(perm)
+    dist = calculate_route_distance(route, distance_matrix)
+    if dist < min_distance:
+        min_distance = dist
+        best_route = route
+
+
+best_route_named = [cities[i] for i in best_route]
+best_route_named.append(cities[best_route[0]])  # return to start
+
+
+base_url = "https://www.google.com/maps/dir/"
+encoded_url = base_url + "/".join(city.replace(" ", "+") for city in best_route_named)
+
+
+webbrowser.open(encoded_url)
+print("Optimal route opened in your browser.")

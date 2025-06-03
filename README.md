@@ -39,6 +39,16 @@ Goal: Find the shortest total distance to visit all cities once and return to th
 
 It uses recursion to try every possible path, remembering the shortest one found so far.
 
+We implemented a custom DFS that recursively explores all possible routes starting from Nairobi.
+🔍 Maintains visited set, path list, and cumulative distance
+📈 Returns to Nairobi when a complete path is formed
+🏆 Updates the shortest path if a better one is found
+✅ Advantages:
+Exact optimal solution
+Simple and deterministic
+⚠️ Limitations:
+O(n!) time complexity
+Not scalable beyond small datasets
 
 
 ---

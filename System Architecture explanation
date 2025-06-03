@@ -1,0 +1,11 @@
+System Architecture
+5.1 Scripts Developed
+ai2.py: Implements DFS-based TSP route computation
+ai3.py: Visualizes computed routes using matplotlib + networkx
+5.2 API Integration
+Uses OpenRouteService for geocoding and distance matrix
+Converts town names to geographic coordinates
+Retrieves real-world road distances
+5.3 Environment Setup
+Python 3.11
+Virtual environment created for dependency management
